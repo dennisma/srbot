@@ -80,7 +80,7 @@ namespace srbots {
 
     bool OLEDDisplay::init(){
         // create a frame buffer
-        this->i2CInst = this->_i2cbus->i2cport();
+        //this->i2CInst = this->_i2cbus->i2cport();
         this->frameBuffer = FrameBuffer();
 
         // display is not inverted by default
