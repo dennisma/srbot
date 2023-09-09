@@ -1,0 +1,28 @@
+#ifndef _CRAZY_PINS_HPP
+#define _CRAZY_PINS_HPP 1
+
+namespace srbots {
+
+//i2c pins
+#define I2C_SDA0 0
+#define I2C_SCL0 1
+#define I2C_SDA1 2
+#define I2C_SCL1 3
+
+// motor pins (cytron board)
+#define M1FPWM 8
+#define M1RPWM 9
+#define M2FPWM 10
+#define M2RPWM 11
+
+//Ultrasonic
+#define TRIGGERPIN  17
+#define ECHOPIN     16
+
+// encoder pins (in pio)
+#define PIN_A 12
+#define PIN_B  (PIN_A +1)  //13
+
+constexpr int lightarraypins[5] = {7,26,15,27,28};
+};
+#endif
