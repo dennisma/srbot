@@ -1,5 +1,5 @@
 #include "hardware/i2c.h"
-#include <Wire.h>
+
 #ifndef _MY_I2CStuff_H_
 #define	_MY_I2CStuff_H_
 namespace srbots {
@@ -16,7 +16,7 @@ struct I2CBUFF {
 /// @brief a device that can act as an I2CBus.  This could be an I2C port OR a mux port
 class i2cbus {
 protected:
-	TwoWire& _wire;
+	i2c_inst_t* _i2cport;
 	uint8_t _sda_pin;
 	uint8_t _scl_pin;
 	uint32_t _bus_speed;
@@ -32,8 +32,8 @@ public:
  *  \param  bus_speed - baud rate 
  *  \return none
  */
-	i2cbus(TwoWire& wire, uint8_t sda_pin, uint8_t scl_pin, uint64_t bus_speed)
-		: _wire(wire),
+	i2cbus(i2c_inst_t* i2cport, uint8_t sda_pin, uint8_t scl_pin, uint64_t bus_speed)
+		: _i2cport(i2cport),
 		_sda_pin(sda_pin),
 		_scl_pin(scl_pin),
 		_bus_speed(bus_speed),initialized(false) {
@@ -46,7 +46,7 @@ public:
  *  \return none
  */
 	i2cbus(const i2cbus& other)
-		: _wire(other._wire),
+		: _i2cport(other._i2cport),
 		  _sda_pin(other._sda_pin),
 		  _scl_pin(other._scl_pin),
 		  _bus_speed(other._bus_speed),
@@ -59,7 +59,7 @@ public:
  *  \return none
  */
 	i2cbus(i2cbus&& other) noexcept
-		: _wire(other._wire),
+		: _i2cport(other._i2cport),
 		  _sda_pin(other._sda_pin),
 		  _scl_pin(other._scl_pin),
 		  _bus_speed(other._bus_speed),
@@ -74,7 +74,7 @@ public:
 	i2cbus& operator=(const i2cbus& other) {
 		if (this == &other)
 			return *this;
-		_wire = other._wire;
+		_i2cport = other._i2cport;
 		_sda_pin = other._sda_pin;
 		_scl_pin = other._scl_pin;
 		_bus_speed = other._bus_speed;
@@ -91,7 +91,7 @@ public:
 	i2cbus& operator=(i2cbus&& other) noexcept {
 		if (this == &other)
 			return *this;
-		_wire = other._wire;
+		_i2cport = other._i2cport;
 		_sda_pin = other._sda_pin;
 		_scl_pin = other._scl_pin;
 		_bus_speed = other._bus_speed;
@@ -132,7 +132,7 @@ public:
 
 	/// @brief returns the port
 	/// @return the port this represents
-	[[nodiscard]] TwoWire& i2cport() const { return _wire; }
+	[[nodiscard]] i2c_inst_t* i2cport() const { return _i2cport; }
 	[[nodiscard]] uint8_t sda_pin() const { return _sda_pin; }
 	[[nodiscard]] uint8_t scl_pin() const { return _scl_pin; }
 	[[nodiscard]] uint64_t bus_speed() const { return _bus_speed; }
