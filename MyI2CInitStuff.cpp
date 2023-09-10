@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include <stdio.h>
 #include "pins.hpp"
 #include <iostream>
@@ -7,7 +8,11 @@
 #include "hardware/i2c.h"
 #include "MyI2CInitStuff.hpp"
 
+
 namespace srbots {
+bool reserved_addr(uint8_t addr) {
+    return (addr & 0x78) == 0 || (addr & 0x78) == 0x78;
+}
 
 void i2cbus::init() {	
 	if (!initialized) initialized = true;
@@ -51,6 +56,21 @@ int i2cbus::Read(I2CBUFF buf, uint8_t _addr, uint16_t numbytes){
     return i2c_read_blocking(_i2cport,_addr,buf.buf,numbytes,false);
 }
 
+void i2cbus::scan(){
+	for (int addr = 0; addr < (1 << 7); ++addr) {
+		int ret;
+		uint8_t rxdata;
+		if (reserved_addr(addr))
+			ret = PICO_ERROR_GENERIC;	
+		else
+			ret = i2c_read_blocking(this->i2cport() , addr, &rxdata, 1, false);
+
+		if (ret > 0){
+			Serial.println(addr,HEX);
+		}
+	}
+}
+
 //---------------------------------------------------------------------------------------------
 
 void I2CSensor::i2cbuff(I2CBUFF buf, uint8_t first,uint8_t second,uint8_t third,uint8_t fourth,uint8_t fifth,uint8_t sixth){
@@ -70,6 +90,7 @@ int I2CSensor::WriteRead(I2CBUFF buf, uint16_t numbytesWrite, uint16_t numbytesR
     if (err == PICO_ERROR_GENERIC) return err;
     return Read(buf,numbytesRead);
 }
+
 
 /// @brief Represents i2c0
 i2cbus i2cport0(i2c0, I2C_SDA0, I2C_SCL0, 400 * 1000);

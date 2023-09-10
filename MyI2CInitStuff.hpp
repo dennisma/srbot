@@ -136,6 +136,8 @@ public:
 	[[nodiscard]] uint8_t sda_pin() const { return _sda_pin; }
 	[[nodiscard]] uint8_t scl_pin() const { return _scl_pin; }
 	[[nodiscard]] uint64_t bus_speed() const { return _bus_speed; }
+	
+	virtual void scan();
 
 };
 
