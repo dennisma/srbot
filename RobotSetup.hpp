@@ -3,6 +3,7 @@
 #include "tcs34725.hpp"
 #include "Ultrasonic.hpp"
 #include "cytronmotor.h"
+#include "encoder.hpp"
 #include <Adafruit_NeoPXL8.h>                         // install NeoPXL8 and ALL DEPENDENCIES!!!!!!!!!!!!!!!
 
 extern Adafruit_NeoPXL8 pixy; 

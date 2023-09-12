@@ -27,6 +27,8 @@ namespace srbots {
 #define COLOR_ORDER                                   // NeoPixel color format (see Adafruit_NeoPixel)
 #define NEO_PIN 18                                    // On the Cytron RP2040 the two NEOPIXELS are on pin 18
 
+#define enc1A 12                                      // encoder 
+#define enc1B 13
 
 constexpr int lightarraypins[5] = {7,26,15,27,28};
 };
