@@ -33,7 +33,7 @@ void loop() {
     uint16_t r = 0, g = 0, b = 0, c = 0;
 
     color.getColors(r, g, b, c);
-    int64_t pingdistance;
+    int32_t pingdistance;
     ping.get(pingdistance);
     oled.clear();
     s = "R: " + to_string(r);

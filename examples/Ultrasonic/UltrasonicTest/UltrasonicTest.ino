@@ -12,7 +12,7 @@ void setup() {
 }
 
 void loop() {
-  int64_t pingdistance;
+  int32_t pingdistance;
   ping.get(pingdistance);
 
   Serial.println(pingdistance);

@@ -33,7 +33,7 @@ public:
 	///  MUST call fire() first!
 	/// \param distance set to be distance but ONLY if get returns True. Invalid is 255
 	/// \returns True - distance will be valid - otherwise we timed out.
-	bool get(int64_t& distance);
+	bool get(int32_t& distance);
 	
 	void setTimeout(long timeout){_timeout =  timeout;}
 

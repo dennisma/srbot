@@ -19,7 +19,7 @@ void UltraSonic::fire() {
     sleep_us(11);
     gpio_put(_trigger_pin,0);
 }
-bool UltraSonic::get(int64_t& distance) {
+bool UltraSonic::get(int32_t& distance) {
   fire();
   auto t = pulseIn(_echo_pin,HIGH,20l*290l*2l);
 
