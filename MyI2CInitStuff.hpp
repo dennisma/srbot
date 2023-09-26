@@ -5,7 +5,7 @@
 namespace srbots {
 
 
-/// @brief a buffer to send over the I2C line
+/// @brief a helper struct that acts as a buffer to send over the I2C line
 struct I2CBUFF {
 	/// @brief pointer to the buffer
 	uint8_t *buf;
@@ -115,7 +115,6 @@ public:
  *  \ingroup i2c_sensor
  *  \return none
  */
-
 	virtual void i2cbuff(I2CBUFF buf, uint8_t first = 0, uint8_t second = 0, uint8_t third = 0, uint8_t fourth = 0, uint8_t fifth = 0, uint8_t sixth = 0);
 	/// @brief writes to a device on the i2cbus port
 	/// @param buf the data sent of the device on the channel
@@ -146,6 +145,7 @@ class I2CSensor {
 protected:
 	i2cbus* _i2cbus;
 	uint8_t _addr;
+	/// @brief internal helper struct
 	struct twovals {
 		uint8_t first;
 		uint8_t second;

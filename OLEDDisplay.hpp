@@ -65,8 +65,7 @@ namespace srbots {
     enum OLED_ORIENTATION {NORMAL=0, UPSIDEDOWN=1};
 
 
-    /// \class SSD1306 ssd1306.h "pico-ssd1306/ssd1306.h"
-    /// \brief SSD1306 class represents i2c connection to display
+    /// \brief OLEDDisplay represents an OLED display
     class OLEDDisplay : public I2CSensor{
     private:
         i2c_inst *i2CInst;
@@ -84,7 +83,7 @@ namespace srbots {
         int  cmd(unsigned char command);
         OLED_ORIENTATION _orientation;
     public:
-        /// \brief SSD1306 constructor initialized display and sets all required registers for operation
+        /// \brief  constructor initialized display and sets all required registers for operation
         /// \param i2CInst - i2c instance. Either i2c0 or i2c1
         /// \param Address - display i2c address. usually for 128x32 0x3C and for 128x64 0x3D
         /// \param size - display size. Acceptable values W128xH32 or W128xH64
@@ -104,9 +103,12 @@ namespace srbots {
         /// \brief Sends frame buffer to display so that it updated
         void sendBuffer();
 
-        /// \brief Sends frame buffer to display so that it updated
+        /// \brief Sends frame buffer to display so that it updated - must ALWAYS call this to update the display
         void updateDisplay(){sendBuffer();}
+		
+		/// \brief returns the width of the screen (almost always 128)
         int screenwidth(){return this->width;}
+		/// \brief returns the height of the screen (either 32 or 64)
         int screenheight(){return this->height;}
 
         /// \brief Adds bitmap image to frame buffer
@@ -120,7 +122,7 @@ namespace srbots {
                             WriteMode mode = WriteMode::ADD);
 
         /// \brief Manually set frame buffer. make sure it's correct size of 1024 bytes
-        /// \param buffer pointer to a new buffer
+        /// \param buffer is an array of 1024 bytes
         void setBuffer(unsigned char *buffer);
 
         /// \brief Flips the display
@@ -167,19 +169,19 @@ namespace srbots {
         /// @param mode    WriteMode enum ADD, SUBTRACT, INVERT
         void drawRect   ( uint8_t x_start, uint8_t y_start, uint8_t x_end, uint8_t y_end, WriteMode mode = WriteMode::ADD);
 
-        /// @brief 
-        /// @param x_start 
-        /// @param y_start 
-        /// @param x_end 
-        /// @param y_end 
-        /// @param mode 
-        void fillRect   ( uint8_t x_start, uint8_t y_start, uint8_t x_end, uint8_t y_end, WriteMode mode = WriteMode::ADD);
-
         /// @brief draws a filled in rectangle 
         /// @param x_start x coord of top left of the rectangle
         /// @param y_start y coord of top left of the rectangle
         /// @param x_end   x coord of bottom right of the rectangle
         /// @param y_end   y coord of bottom right of the rectangle
+        /// @param mode    WriteMode enum ADD, SUBTRACT, INVERT
+        void fillRect   ( uint8_t x_start, uint8_t y_start, uint8_t x_end, uint8_t y_end, WriteMode mode = WriteMode::ADD);
+
+        /// @brief draws a line
+        /// @param x_start x coord of top left of the line
+        /// @param y_start y coord of top left of the line
+        /// @param x_end   x coord of bottom right of the line
+        /// @param y_end   y coord of bottom right of the line
         /// @param mode    WriteMode enum ADD, SUBTRACT, INVERT
         void drawLine   ( uint8_t x_start, uint8_t y_start, uint8_t x_end, uint8_t y_end, WriteMode mode = WriteMode::ADD);
 
@@ -191,7 +193,7 @@ namespace srbots {
         /// @param mode    WriteMode enum ADD, SUBTRACT, INVERT
         void drawEllipse( int16_t x_start, int16_t y_start, int16_t x_end, int16_t y_end, WriteMode mode = WriteMode::ADD);
 
-        /// @brief draws an filled ellipse inside of a given rectangle
+        /// @brief draws a filled ellipse inside of a given rectangle
         /// @param x_start x coord of top left of the rectangle
         /// @param y_start y coord of top left of the rectangle
         /// @param x_end   x coord of bottom right of the rectangle
@@ -206,7 +208,7 @@ namespace srbots {
         /// @param mode    WriteMode enum ADD, SUBTRACT, INVERT 
         void drawCircle ( uint8_t centerx, uint8_t centery, uint8_t radius, WriteMode mode = WriteMode::ADD);
 
-        /// @brief draws a filled circle
+        /// @brief draws a filled in circle
         /// @param centerx center point for x
         /// @param centery center point for y
         /// @param radius  radius from center

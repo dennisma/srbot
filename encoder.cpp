@@ -1,44 +1,49 @@
 #include <Arduino.h>
 #include "encoder.hpp"
 
+
+
+
+
 volatile int_fast32_t encCount = 0;
+namespace srbots{
+	template<uint8_t A, uint8_t B>
+	void encodercallback() {
+	  auto pins = sio_hw->gpio_in;
 
-template<uint8_t A, uint8_t B>
-void encodercallback() {
-  auto pins = sio_hw->gpio_in;
-
-  if (pins & (1 << A))
-    (pins & (1 << B)) ? encCount-- : encCount++;
-  else
-    (pins & (1 << B)) ? encCount++ : encCount--;
-}
-
-
-Encoder::Encoder() {
-}
+	  if (pins & (1 << A))
+		(pins & (1 << B)) ? encCount-- : encCount++;
+	  else
+		(pins & (1 << B)) ? encCount++ : encCount--;
+	}
 
 
-void Encoder::init() {
-  pinMode(enc1A, INPUT);
-  pinMode(enc1B, INPUT);
-  void (*func)() = encodercallback<enc1A, enc1B>;
-  attachInterrupt(digitalPinToInterrupt(enc1A), func, CHANGE);
-}
+	Encoder::Encoder() {
+	}
 
 
-void Encoder::reset() {
-  encCount = 0;
-}
+	void Encoder::init() {
+	  pinMode(enc1A, INPUT);
+	  pinMode(enc1B, INPUT);
+	  void (*func)() = encodercallback<enc1A, enc1B>;
+	  attachInterrupt(digitalPinToInterrupt(enc1A), func, CHANGE);
+	}
 
 
-int_fast32_t Encoder::count() {return encCount; }
+	void Encoder::reset() {
+	  encCount = 0;
+	}
 
-Encoder enc;
 
-void setup1() {
-  enc.init();
-}
+	int_fast32_t Encoder::count() {return encCount; }
 
-void loop1() {
+	Encoder enc;
 
+	void setup1() {
+	  enc.init();
+	}
+
+	void loop1() {
+
+	}
 }
