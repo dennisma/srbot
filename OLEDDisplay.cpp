@@ -397,16 +397,16 @@ namespace srbots {
             // printf("(%f, %f)\n", x + xc, -y + yc);
             // printf("(%f, %f)\n", -x + xc, -y + yc);
             setPixel(x + xc, y + yc,mode);
-            drawLine(xc, y + yc, x + xc, y + yc);
+            drawLine(xc, y + yc, x + xc, y + yc,mode);
 
             setPixel(-x + xc, y + yc,mode);
-            drawLine(xc, y + yc, -x + xc, y + yc);
+            drawLine(xc, y + yc, -x + xc, y + yc,mode);
             
             setPixel(x + xc, -y + yc,mode);
-            drawLine(xc, -y + yc, x + xc, -y + yc);
+            drawLine(xc, -y + yc, x + xc, -y + yc,mode);
             
             setPixel(-x + xc, -y + yc,mode);
-            drawLine(xc, -y + yc, -x + xc, -y + yc);
+            drawLine(xc, -y + yc, -x + xc, -y + yc,mode);
     
             // Checking and updating value of
             // decision parameter based on algorithm
@@ -438,16 +438,16 @@ namespace srbots {
             // printf("(%f, %f)\n", x + xc, -y + yc);
             // printf("(%f, %f)\n", -x + xc, -y + yc);
             setPixel(x + xc, y + yc,mode);
-            drawLine(xc, y + yc, x + xc, y + yc);
+            drawLine(xc, y + yc, x + xc, y + yc,mode);
 
             setPixel(-x + xc, y + yc,mode);
-            drawLine(xc, y + yc, -x + xc, y + yc);
+            drawLine(xc, y + yc, -x + xc, y + yc,mode);
             
             setPixel(x + xc, -y + yc,mode);
-            drawLine(xc, -y + yc, x + xc, -y + yc);
+            drawLine(xc, -y + yc, x + xc, -y + yc,mode);
             
             setPixel(-x + xc, -y + yc,mode);
-            drawLine(xc, -y + yc, -x + xc, -y + yc);
+            drawLine(xc, -y + yc, -x + xc, -y + yc,mode);
             // Checking and updating parameter
             // value based on algorithm
             if (d2 > 0) {
