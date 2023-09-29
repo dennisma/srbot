@@ -1,10 +1,6 @@
 #include <Arduino.h>
 #include "encoder.hpp"
 
-
-
-
-
 volatile int_fast32_t encCount = 0;
 namespace srbots{
 	template<uint8_t A, uint8_t B>
@@ -23,6 +19,7 @@ namespace srbots{
 
 
 	void Encoder::init() {
+	  Serial.println("Enc Init");
 	  pinMode(enc1A, INPUT);
 	  pinMode(enc1B, INPUT);
 	  void (*func)() = encodercallback<enc1A, enc1B>;
@@ -39,11 +36,15 @@ namespace srbots{
 
 	Encoder enc;
 
-	void setup1() {
-	  enc.init();
-	}
 
-	void loop1() {
+}
 
-	}
+void setup1() {
+  Serial.println("Enc Init");
+  srbots::enc.init();
+}
+
+void loop1() {
+	//Serial.println("loop1");
+	delay(10000);
 }

@@ -19,16 +19,13 @@ namespace srbots {
 #define TRIGGERPIN  17
 #define ECHOPIN     16
 
-// encoder pins (in pio)
-#define PIN_A 12
-#define PIN_B  (PIN_A +1)  //13
 
 #define NUM_LEDS    2                                 // number of pixels
 #define COLOR_ORDER                                   // NeoPixel color format (see Adafruit_NeoPixel)
 #define NEO_PIN 18                                    // On the Cytron RP2040 the two NEOPIXELS are on pin 18
 
-#define enc1A 12                                      // encoder 
-#define enc1B 13
+#define enc1A 26                                      // encoder 
+#define enc1B 27
 
 constexpr int lightarraypins[5] = {7,26,15,27,28};
 };

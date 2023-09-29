@@ -7,7 +7,6 @@ void setup() {
   while (!Serial)
     ;
   enc.reset();
-
 }
 
 void loop() {
