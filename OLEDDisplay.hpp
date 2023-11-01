@@ -152,7 +152,13 @@ namespace srbots {
         ///  Must call updateDisplay() to display changes
         /// \param line  0 or 1 for the line number 
         /// \param val   a value
-        void drawtext(int line, uint32_t val);
+        void drawtext(int line, int val);
+		
+		/// \brief Writes text to OLED buffer - DOES NOT DISPLAY
+        ///  Must call updateDisplay() to display changes
+        /// \param line  0 or 1 for the line number 
+        /// \param val   a value
+        void drawtext(int line, double val);
     
         /// \brief Writes text to OLED buffer - DOES NOT DISPLAY
         ///  Must call updateDisplay() to display changes
