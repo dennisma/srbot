@@ -11,7 +11,7 @@
 extern Adafruit_NeoPXL8 pixy; 
 
 namespace srbots {
-
-void RobotSetup();
+	/// @brief Initializes some of the global objects used - call this in setup()
+	void RobotSetup();
 
 };

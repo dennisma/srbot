@@ -80,7 +80,7 @@ namespace srbots {
 
     bool OLEDDisplay::init(){
         // create a frame buffer
-		delay(300);
+		delay(1000);
         this->i2CInst = this->_i2cbus->i2cport();
         this->frameBuffer = FrameBuffer();
 
