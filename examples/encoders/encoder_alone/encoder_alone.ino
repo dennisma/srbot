@@ -6,6 +6,8 @@ void setup() {
   Serial.begin(115200);
   while (!Serial)
     ;
+
+  enc.init(12,13);
   enc.reset();
 }
 
