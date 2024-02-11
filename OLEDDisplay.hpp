@@ -92,7 +92,7 @@ namespace srbots {
         OLEDDisplay(i2cbus* i2cport, OLED_ORIENTATION orientation=NORMAL, uint16_t Address=0x3D, Size size=Size::W128xH64);
 
 	
-        /// \brief Set pixel operates frame buffer
+        /// \brief Set pixel operates frame buffer...
         /// x is the x position of pixel you want to change. values 0 - 127
         /// y is the y position of pixel you want to change. values 0 - 31 or 0 - 63
         /// \param x - position of pixel you want to change. values 0 - 127

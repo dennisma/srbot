@@ -5,7 +5,7 @@ namespace srbots {
 
 constexpr uint8_t coloraddr = 0x39;
 	/** 
-	*  @brief represents a color sensor device
+	*  @brief represents a color sensor device on arduino
 	*/
 class ColorDetector : public I2CSensor {
 private:
@@ -37,7 +37,7 @@ public:
 
 	/**
 	* init color sensors
-	*  @param iTimeMS - integration time in MS
+	*  @param iTimeMS - integration time in MS (smaller time means smaller values)
 	*  @return true if successfulbool init();
 	*/
 	bool init(uint16_t iTimeMS);
