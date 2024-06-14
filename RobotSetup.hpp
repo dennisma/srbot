@@ -10,6 +10,10 @@
 
 extern Adafruit_NeoPXL8 pixy; 
 
+// this is to make it compatible with the Webots stuff....
+#define runsim() 1
+extern srbots::Button button20;
+extern srbots::Button button21;
 namespace srbots {
 	/// @brief Initializes some of the global objects used - call this in setup()
 	void RobotSetup();

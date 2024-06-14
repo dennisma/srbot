@@ -2,15 +2,16 @@
 
 using namespace srbots;
 
-Button botton20(20);
-
 void setup() {
-  botton20.init();
+  RobotSetup();
 }
 
 void loop() {
-  if (botton20.pressed()){
-    Serial.println("Pressed!!!");
+  if (button20.pressed()){
+    Serial.println("Pressed 20!!!");
+  }
+  if (button21.pressed()){
+    Serial.println("Pressed 21!!!");
   }
   delay(3000);
 }

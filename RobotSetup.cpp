@@ -4,9 +4,12 @@
 
 int8_t neopixel_pins[8] = {  NEO_PIN,-1,-1,-1,-1,-1,-1,-1};    // We only have one "strand" so set others strands to pin -1
 Adafruit_NeoPXL8 pixy(NUM_LEDS, neopixel_pins); 
-
+srbots::Button button20(20);
+srbots::Button button21(21);
 namespace srbots {
 	void RobotSetup(){
+	  button20.init();
+	  button21.init();
 	  port0->init();
 	  port1->init();
 	  
