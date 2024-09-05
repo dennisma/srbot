@@ -4,8 +4,13 @@
 
 namespace srbots{
 uint32_t gpio_get_events(uint gpio) {
+#ifdef io_bank0_hw
+#define iobank io_bank0_hw
+#else
+#define iobank iobank0_hw
+#endif
   int32_t mask = 0xF << 4 * (gpio % 8);
-  return (iobank0_hw->intr[gpio / 8] & mask) >> 4 * (gpio % 8);
+  return (iobank->intr[gpio / 8] & mask) >> 4 * (gpio % 8);
 }
 void gpio_clear_events(uint gpio, gpio_irq_level events) {
   gpio_acknowledge_irq(gpio, events);

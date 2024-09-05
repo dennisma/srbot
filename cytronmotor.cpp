@@ -91,7 +91,7 @@ uint16_t calc_wrap_point(double fc, uint hz, bool phase_correct = false)
 
 uint32_t pwm_get_wrap(uint slicenum)
 {
-  valid_params_if(PWM, slicenum >= 0 && slicenum < NUM_PWM_SLICES);
+  assert(slicenum >= 0 && slicenum < NUM_PWM_SLICES);
   return pwm_hw->slice[slicenum].top;
 }
 
