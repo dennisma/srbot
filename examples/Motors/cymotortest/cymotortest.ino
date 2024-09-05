@@ -1,7 +1,8 @@
-#include <RobotSetup.hpp>
+#include "RobotSetup.hpp"
+using namespace srbots;
 
 void setup() {
-
+  RobotSetup();
 }
 
 int speed=60;
