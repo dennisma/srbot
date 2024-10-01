@@ -197,9 +197,9 @@ extern i2cbus i2cport0;
 extern i2cbus i2cport1;
 
 /// @brief Represents i2c0
-#define port0 (&i2cport0)
+#define port0 (&srbots::i2cport0)
 /// @brief Represents i2c1
-#define port1 (&i2cport1)
+#define port1 (&srbots::i2cport1)
 };
 
 #endif
