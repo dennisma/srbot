@@ -35,7 +35,8 @@ namespace srbots{
 	  Serial.println("encoder pins\n");
 	  	Serial.println(__encoder_a);
 		Serial.println(__encoder_b);
-	  attachInterrupt(digitalPinToInterrupt(::__encoder_a), func, CHANGE);
+	  //attachInterrupt(digitalPinToInterrupt(::__encoder_a), func, CHANGE);
+	  attachInterrupt(digitalPinToInterrupt(::__encoder_a), func, RISING);
 	}
 
 
