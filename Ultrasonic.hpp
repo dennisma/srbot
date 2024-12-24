@@ -35,6 +35,7 @@ public:
 	/// \param distance set to be distance but ONLY if get returns True. Invalid is 255
 	/// \returns True - distance will be valid - otherwise we timed out.
 	bool get(int32_t& distance);
+	bool get(int& distance);
 	
 	/// \brief Sets timeoput for ping sensor wait
 	/// \param timeout for the sensor (this appears to not be in any standard measure)

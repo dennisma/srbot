@@ -28,4 +28,11 @@ bool UltraSonic::get(int32_t& distance) {
   if (distance == 0) distance = 255;
   return distance !=0;
 }
+bool UltraSonic::get(int& distance){
+	int32_t d;
+	auto ret = get(d);
+	distance = static_cast<int>(d);
+	return ret;
+	
+}
 };
