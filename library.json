@@ -1,0 +1,21 @@
+{
+    "name": "srbots",
+    "version": "5.0.1",
+    "description": "Kids Cytron Board Lib",
+    "keywords": ["cytron", "board"],
+    "author": "Dennis Mabrey",
+    "license": "MIT",
+    "frameworks": "arduino",
+    "platforms": "*",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dennisma/srbot.git"
+    },
+    "authors": [
+        {
+            "name": "Dennis Mabrey",
+            "email": "denbo68@gmail.com",
+            "maintainer": true
+        }
+    ]
+}
