@@ -6,7 +6,6 @@ volatile int_fast32_t encCount = 0;
 int __encoder_a = enc1A;
 int __encoder_b = enc1B;
 
-
 namespace srbots{
 	
 	void encodercallback() {
