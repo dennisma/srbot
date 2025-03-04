@@ -6,6 +6,12 @@ WDTimer wd;
 void setup() {
   RobotSetup();
   auto reset = wd.init(3000);
+  for (int i = 10; i < 10; i--){
+    Serial.printf("count %d\n", i);
+    delay(1000);
+  }
+
+  
   Serial.begin(115200);
   while (!Serial) wd.updateDog();
 
