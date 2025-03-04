@@ -1,6 +1,6 @@
 {
     "name": "srbots",
-    "version": "5.0.1",
+    "version": "5.0.2",
     "description": "Kids Cytron Board Lib",
     "keywords": ["cytron", "board"],
     "author": "Dennis Mabrey",
@@ -17,5 +17,9 @@
             "email": "denbo68@gmail.com",
             "maintainer": true
         }
-    ]
+    ],
+    "dependencies":
+    {
+        "adafruit/Adafruit NeoPXL8" :  "^1.3.0"
+    }
 }
