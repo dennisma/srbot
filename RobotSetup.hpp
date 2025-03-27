@@ -1,4 +1,10 @@
+#pragma once
+
 #include <Arduino.h>
+
+#define TIMEOUT INT_MAX
+#define BARF TIMEOUT
+
 #include "MyI2CInitStuff.hpp"
 #include "OLEDDisplay.hpp"
 #include "tcs34725.hpp"
@@ -15,8 +21,10 @@ extern Adafruit_NeoPXL8 pixy;
 #define runsim() 1
 extern srbots::Button button20;
 extern srbots::Button button21;
+
+
+
 namespace srbots {
 	/// @brief Initializes some of the global objects used - call this in setup()
 	void RobotSetup();
-
 };

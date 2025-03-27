@@ -11,8 +11,6 @@ class ColorDetector : public I2CSensor {
 private:
 	bool tcsgetID();
 	uint16_t _iTimeMS;
-	
-
 public:
 	/** 
 	* initializes the color sensor
@@ -66,6 +64,14 @@ public:
 	*  @return true if successfull  
 	*/
 	bool getColors(uint16_t& red, uint16_t& green, uint16_t& blue, uint16_t& brightness);
+
+	/// @brief Gets the brightness value
+	/// @return the brightness value
+	int getClear(){
+		uint16_t red, green, blue, brightness;
+		getColors(red, green, blue, brightness);
+		return brightness;
+	}
 
 	/**
 	* 	Sets the integration time in mS to capture the color.  The larger the number the more accurate BUT it is also slower.

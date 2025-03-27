@@ -2,12 +2,14 @@
 #define __HCSR04__H 
 
 #include <iostream>
+#include "RobotSetup.hpp"
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 #include "hardware/gpio.h"
 #include "pico/binary_info.h"
 #include "pins.hpp"
 namespace srbots{
+
 /// @brief ultrasonic distance sensor that acts like an HCSR04
 class UltraSonic {
 private:
@@ -36,7 +38,19 @@ public:
 	/// \returns True - distance will be valid - otherwise we timed out.
 	bool get(int32_t& distance);
 	bool get(int& distance);
-	
+
+	/// \brief Gets distance in centimeters(cm)
+	/// \returns distance in centimeters or TIMEOUT if we timed out
+	int getDistance(){
+		int distance; 
+		if (get(distance)) {
+			return distance;
+		}
+		else {
+			return TIMEOUT;
+		}
+	}
+
 	/// \brief Sets timeoput for ping sensor wait
 	/// \param timeout for the sensor (this appears to not be in any standard measure)
 	void setTimeout(long timeout){_timeout =  timeout;}
