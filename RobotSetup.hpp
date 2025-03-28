@@ -4,7 +4,7 @@
 
 #define TIMEOUT INT_MAX
 #define BARF TIMEOUT
-
+#include "TOF.hpp"
 #include "MyI2CInitStuff.hpp"
 #include "OLEDDisplay.hpp"
 #include "tcs34725.hpp"
