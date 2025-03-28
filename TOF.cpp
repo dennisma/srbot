@@ -36,13 +36,14 @@ bool TOF::init(){
     w( 0xFF ,0x06 );
     wr(0x83 );
     //read to 0x29 ack data: 0x01
-    w( 0x83 ,0x05 );
+    w( 0x83 ,0xDD );
     w( 0xFF ,0x07 );
     w( 0x81 ,0x01 );
     w( 0x80 ,0x01 );
     w( 0x94 ,0x6B );
     w( 0x83 ,0x00 );
-    wr(0x83 );
+   //wr(0x83 );
+    if (!check83()) return false;
     //read to 0x29 ack data: 0x10
     w( 0x83 ,0x01 );
     wr(0x92 );
@@ -51,7 +52,7 @@ bool TOF::init(){
     w( 0xFF ,0x06 );
     wr(0x83 );
     //read to 0x29 ack data: 0x05
-    w( 0x83 ,0x01 );
+    w( 0x83 ,0xD9 );
     w( 0xFF ,0x01 );
     w( 0x00 ,0x01 );
     w( 0xFF ,0x00 );
@@ -65,7 +66,7 @@ bool TOF::init(){
     w( 0x4E ,0x2C );
     w( 0xFF ,0x00 );
     w( 0xB6 ,0xB4 );
-    w(0xB0 ,0x3B ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 );
+    w(0xB0 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 ,0x00 );
     w( 0xFF ,0x01 );
     w( 0x00 ,0x00 );
     w( 0xFF ,0x00 );
@@ -192,21 +193,70 @@ bool TOF::init(){
     w( 0x0B ,0x01 );
     w( 0x00 ,0x00 );
     w( 0x01 ,0xE8 );
+    return setContinuous();
+}
+
+bool TOF::setContinuous(){
+    w(0x80 ,0x01 );
+    w(0xFF ,0x01 );
+    w(0x00 ,0x00 );
+    w(0x91 ,0x3C );
+    w(0x00 ,0x01 );
+    w(0xFF ,0x00 );
+    w(0x80 ,0x00 );
+    w(0x00 ,0x02 );
     return true;
 }
 
+int TOF::getDistance(){
+    uint8_t buffer[BUF_SIZE];
+    I2CBUFF buf ={buffer,BUF_SIZE};
+    // write to 0x29 ack data: 0x13 
+    // read to 0x29 ack data: 0x44
+    // write to 0x29 ack data: 0x1E 
+    // read to 0x29 ack data: 0x01 0xDA       // the value
+    // write to 0x29 ack data: 0x0B 0x01 
+    if (!check13()) return TIMEOUT;
+    i2cbuff(buf,0x1E);
+    auto err = WriteRead(buf,1,2);
+    if (err == PICO_ERROR_GENERIC) return TIMEOUT;
+    int ret = (buf.buf[0] << 8) | buf.buf[1];
+    w(0x0B ,0x01 );
+    //Serial.println(ret);
+    return ret;
+} 
 bool TOF::check13(){
     uint8_t buffer[BUF_SIZE];
     I2CBUFF buf ={buffer,BUF_SIZE};
-
+    int count = 0;
     while (true){
         i2cbuff(buf,0x13);
         auto err = WriteRead(buf,1,1);
         if (err == PICO_ERROR_GENERIC) return false;
-        if (buf.buf[0] == 0x44) return true;
+        if (buf.buf[0] & 0x07){
+            return true;
+        }  
+        delay(10);
     }
-    return true;
+    return false;
 }
+bool TOF::check83(){
+    uint8_t buffer[BUF_SIZE];
+    I2CBUFF buf ={buffer,BUF_SIZE};
+    int count = 0;
+    while (true){
+        i2cbuff(buf,0x83);
+        auto err = WriteRead(buf,1,1);
+        if (err == PICO_ERROR_GENERIC) return false;
+        if (buf.buf[0] != 0x00){
+            return true;
+        }  
+        delay(10);
+    }
+    return false;
+}
+
+
 bool TOF::wr(uint8_t val,int readbytes){
     uint8_t buffer[BUF_SIZE];
     I2CBUFF buf ={buffer,BUF_SIZE};
