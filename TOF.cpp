@@ -208,7 +208,7 @@ bool TOF::setContinuous(){
     return true;
 }
 
-int TOF::getDistance(){
+int TOF::getDistanceMM(){
     uint8_t buffer[BUF_SIZE];
     I2CBUFF buf ={buffer,BUF_SIZE};
     // write to 0x29 ack data: 0x13 

@@ -22,7 +22,8 @@ namespace srbots {
     public:
         TOF(i2cbus* i2cport): I2CSensor(i2cport, tofaddr) {}
         bool init();
-        int  getDistance();
+        int  getDistance(){return getDistanceMM()/10;}
+		int  getDistanceMM();
     };
 
 } // namespace srbots
