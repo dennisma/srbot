@@ -5,6 +5,7 @@
 
 namespace srbots {
     constexpr uint8_t tofaddr = 0x29;
+    /// @brief Time of Flight Distance Sensor
     class TOF : public I2CSensor{
         private:
         bool check13();
@@ -20,9 +21,17 @@ namespace srbots {
         bool setContinuous();
 
     public:
+        /// @brief non-i2c initialization
+        /// @param i2cport - the i2c port it is connected to
         TOF(i2cbus* i2cport): I2CSensor(i2cport, tofaddr) {}
+        /// @brief Initializes the Time of Flight (can take a long time)
+        /// @return true if it worked
         bool init();
+        /// @brief gets the distance
+        /// @return the distance in CM or TIMEOUT
         int  getDistance(){return getDistanceMM()/10;}
+		/// @brief gets the distance
+		/// @return the distance in MM or TIMEOUT
 		int  getDistanceMM();
     };
 
