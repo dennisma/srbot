@@ -38,6 +38,11 @@ namespace srbots{
 	* resets the button pressed flag to false. Automatically called by pressed()
 	*/
 	  void clear();
+	  
+	/**
+	* Simply pauses program until the button is pressed
+	*/
+	  void waitUntilPressed();
 	};
 };
 

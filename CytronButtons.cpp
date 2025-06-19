@@ -35,5 +35,7 @@ bool Button::pressed() {
 void Button::clear() {
   gpio_clear_events(_pin, _event);
 }
-
+void Button::waitUntilPressed() {
+  while(!pressed());
+}
 };
