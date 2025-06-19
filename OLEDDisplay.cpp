@@ -250,24 +250,24 @@ namespace srbots {
     }
 
     void OLEDDisplay::drawtext(int line, const char *buf ){
-        drawText(this, font_8x8, buf, 0,line * 8);
+        __internal_junk::drawText(this, font_8x8, buf, 0,line * 8);
     }
 	
     void OLEDDisplay::drawtext(int line, int val){
         char buf[30];
         sprintf(buf,"%d",val);
-        drawText(this, font_8x8, buf, 0, line * 8);
+        __internal_junk::drawText(this, font_8x8, buf, 0, line * 8);
     }
 
     void OLEDDisplay::drawtext(int line, double val){
         char buf[30];
         sprintf(buf,"%f",val);
-        drawText(this, font_8x8, buf, 0, line * 8);
+        __internal_junk::drawText(this, font_8x8, buf, 0, line * 8);
     }
 
 
     void OLEDDisplay::drawtext(int line, const std::string& s){
-        drawText(this, font_8x8, s.c_str(), 0, line * 8);
+        __internal_junk::drawText(this, font_8x8, s.c_str(), 0, line * 8);
     }
 
     void OLEDDisplay::drawRect ( uint8_t x_start, uint8_t y_start, uint8_t x_end, uint8_t y_end, WriteMode mode ){

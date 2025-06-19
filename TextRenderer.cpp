@@ -1,7 +1,7 @@
 #include "TextRenderer.h"
 
 namespace srbots {
-
+namespace __internal_junk{
     void drawText(srbots::OLEDDisplay *ssd1306, const unsigned char *font, const char *text, uint8_t anchor_x,
                   uint8_t anchor_y, WriteMode mode, Rotation rotation) {
         uint8_t font_width = font[0];
@@ -10,10 +10,10 @@ namespace srbots {
         while (text[n] != '\0') {
             switch (rotation) {
                 case Rotation::deg0:
-                    drawChar(ssd1306, font, text[n], anchor_x + (n * font_width), anchor_y, mode, rotation);
+                    __internal_junk::drawChar(ssd1306, font, text[n], anchor_x + (n * font_width), anchor_y, mode, rotation);
                     break;
                 case Rotation::deg90:
-                    drawChar(ssd1306, font, text[n], anchor_x, anchor_y + (n * font_width), mode, rotation);
+                    __internal_junk::drawChar(ssd1306, font, text[n], anchor_x, anchor_y + (n * font_width), mode, rotation);
                     break;
             }
 
@@ -54,4 +54,5 @@ namespace srbots {
             }
         }
     }
+}
 };

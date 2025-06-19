@@ -147,24 +147,28 @@ namespace srbots {
         /// \param line 0 or 1 for the line number
         /// \param buf a text string
         void drawtext(int line, const char *buf);
+		void drawText(int line, const char *buf){drawtext( line, buf);}
 
         /// \brief Writes text to OLED buffer - DOES NOT DISPLAY
         ///  Must call updateDisplay() to display changes
         /// \param line  0 or 1 for the line number 
         /// \param val   a value
         void drawtext(int line, int val);
+		void drawText(int line, int val){drawtext( line,  val);}
 		
 		/// \brief Writes text to OLED buffer - DOES NOT DISPLAY
         ///  Must call updateDisplay() to display changes
         /// \param line  0 or 1 for the line number 
         /// \param val   a value
         void drawtext(int line, double val);
+		void drawText(int line, double val){drawtext( line,  val);}
     
         /// \brief Writes text to OLED buffer - DOES NOT DISPLAY
         ///  Must call updateDisplay() to display changes
         /// \param line  0 or 1 for the line number
         /// @param s the string to write out.
         void drawtext(int line, const std::string& s);
+		void drawText(int line, const std::string& s){drawtext(line, s);}
     
 
         /// @brief draws a rectangle on the screen
