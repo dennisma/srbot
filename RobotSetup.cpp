@@ -20,6 +20,7 @@ namespace srbots {
 	  pixy.setBrightness(64);                             // 0 is min (off) and 255 is max
 	  pixy.clear();                                       // turn them all off
 	  pixy.show();                                        // must call show(), that is when color is sent.
+	  Serial.setTimeout(ULONG_MAX);
 
 	}
 }
