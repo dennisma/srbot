@@ -8,6 +8,8 @@ srbots::Button button20(20);
 srbots::Button button21(21);
 namespace srbots {
 	void RobotSetup(){
+	  Serial.begin(115200);
+	  delay(2000);
 	  button20.init();
 	  button21.init();
 	  port0->init();
