@@ -138,20 +138,37 @@ uint32_t init_motor(srbots::CytronMotor& m)
   return m.wrap;
 }
 
-void speed_motor(srbots::CytronMotor& m,double speed){
-  int drivepin ;
-  int sleeppin;
+#define LOWER_BOUND 28
 
-  speed = constrain(speed,-100,100);
-  if (speed >=0){
+void speed_motor(srbots::CytronMotor &m, double speed)
+{
+  int drivepin;
+  int sleeppin;
+  Serial.println("SPeed");
+  speed = constrain(speed, -100, 100);
+#ifdef BLUE_MOTORS
+  Serial.println("BlueMotors");
+  int newspeed = map(abs(speed), 0, 100, LOWER_BOUND, 100);
+  if (!speed)
+    newspeed = 0;
+  if (speed <= 0)
+    newspeed *= -1;
+  speed = newspeed;
+#else
+  Serial.println("Ooook");
+#endif
+
+  if (speed >= 0)
+  {
     m.dir = FORWARD;
-    drivepin =  m.m_pwmfpin;
+    drivepin = m.m_pwmfpin;
     sleeppin = m.m_pwmrpin;
   }
-  else{
+  else
+  {
     m.dir = REVERSE;
-    drivepin =  m.m_pwmrpin;
-    sleeppin = m.m_pwmfpin;    
+    drivepin = m.m_pwmrpin;
+    sleeppin = m.m_pwmfpin;
   }
 
   volatile int wrap = pwm_get_wrap(pwm_gpio_to_slice_num(drivepin));
